@@ -5,6 +5,8 @@ import ScreenBox
 from scipy.misc import imread, imsave, imresize
 import numpy as np
 
+TITLE = "Paint the World"
+
 class image:
     resource = {}
     @staticmethod
@@ -54,7 +56,7 @@ def init():
     #screen = pygame.Surface(origin_screen_size, flags=SRCALPHA, depth=32)
     screen = screenNow
 
-    pygame.display.set_caption("Story Drawer")
+    pygame.display.set_caption(TITLE)
 
 class display:
     @staticmethod

@@ -1,7 +1,7 @@
 {
 	"obj":[
 		{
-			"name":"baclground",
+			"name":"background",
 			"tex":"bg.jpg",
 			"pos":[0,0,0],
 			"scale":1.5
@@ -24,7 +24,6 @@
 			"type": "move",
             "obj": "sun",
             "start": 2,
-            "end": 99999,
             "offset": [0, -100]
 		},
 		{
@@ -39,7 +38,7 @@
             "type": "change_tex",
             "obj": "xiaoming",
             "tex": "xiaoming.png",
-            "start": 2
+            "start": 3.5
         }
 	]
 }
