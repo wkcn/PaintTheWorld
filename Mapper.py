@@ -32,6 +32,7 @@ class Mapper:
             o.update(clock)
         for a in self.actions:
             a.update(self.clock)
+        self.actions = [a for a in self.actions if not a.dead]
     def draw(self, screen):
         # layer
         self.objs.sort(key = lambda o: o.realz)

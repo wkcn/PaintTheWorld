@@ -14,9 +14,9 @@
 		},
 		{
 			"name": "xiaoming",
-			"tex": "xiaoming.png",
+			"tex": "xiaoming_back.png",
 			"pos": [300, 450, 40],
-            "scale": 0.2
+            "scale": 0.4
 		}
 	],
 	"actions":[
@@ -34,6 +34,12 @@
             "end": 20,
 			"routes": [[350, 440],[400, 430]],
             "v": 3
-		}
+		},
+        {
+            "type": "change_tex",
+            "obj": "xiaoming",
+            "tex": "xiaoming.png",
+            "start": 2
+        }
 	]
 }
