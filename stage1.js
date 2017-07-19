@@ -15,20 +15,25 @@
 		{
 			"name": "xiaoming",
 			"tex": "xiaoming.png",
-			"pos": [100, 500, 40]
+			"pos": [300, 450, 40],
+            "scale": 0.2
 		}
 	],
 	"actions":[
 		{
-			"name": "move",
-			"par": ["sun", [0, -200], 2],
-			"time": [2, 7]
+			"type": "move",
+            "obj": "sun",
+            "start": 2,
+            "end": 99999,
+            "offset": [0, -100]
 		},
 		{
-			"name": "route",
-			"par": ["xiaoming"],
-			"time": [3, 20],
-			"routes": [[120, 500],[120, 480],[125, 500],[125, 520]]
+			"type": "route",
+			"obj": "xiaoming",
+            "start": 3,
+            "end": 20,
+			"routes": [[350, 440],[400, 430]],
+            "v": 3
 		}
 	]
 }

@@ -1,6 +1,7 @@
 import mygame
 import pygame
 import copy
+from Defines import *
 
 class Obj:
     def __init__(self, kwargs):
@@ -32,8 +33,9 @@ class Obj:
                         self.realPos[i] = self.tarPos[i]
     def draw(self, screen):
         screen.blit(self.tex, (self.realx, self.realy))
-    def move(self, target):
-        self.target = target
+    def moveto(self, target):
+        for i in range(len(target)):
+            self.tarPos[i] = target[i]
     @property
     def realx(self):
         return self.realPos[0]
