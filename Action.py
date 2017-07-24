@@ -1,3 +1,5 @@
+from Defines import *
+
 class Action:
     mp = None
     screen = None
@@ -19,6 +21,14 @@ class Action:
         elif self.kind == "move_screen":
             self.offset = arg["offset"]
             self.v = arg["v"]
+        elif self.kind == "bezier":
+            self.seq = arg["seq"]
+            self.v = arg["v"]
+            self.t = 0.0
+        elif self.kind in ["hide", "show"]:
+            pass
+        else:
+            raise TypeError("Unknown Type %s" % self.kind)
     def update(self, clock):
         if clock > self.end:
             self.dead = True
@@ -63,5 +73,14 @@ class Action:
                 screen.display_y += self.v * clock / 1000.0
                 ok = True
             self.dead = not ok
+        elif self.kind == "bezier":
+            self.t = min(self.t + self.v * clock / 1000.0, 1.0)
+            if self.t >= 1:
+                self.dead = True
+            else:
+                bx, by = (bezier(self.seq, self.t))
+                self.obj.realPos[0] = self.obj.tarPos[0] = bx
+                self.obj.realPos[1] = self.obj.tarPos[1] = by
+
 
         self.running = True

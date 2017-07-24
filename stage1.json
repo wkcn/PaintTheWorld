@@ -27,12 +27,12 @@
             "offset": [0, -100]
 		},
 		{
-			"type": "route",
+			"type": "bezier",
 			"obj": "xiaoming",
             "start": 3,
             "end": 20,
-			"routes": [[350, 440],[400, 430]],
-            "v": 3
+			"seq": [[300, 450], [450, 100],[650, 450]],
+            "v": 0.001
 		},
         {
             "type": "change_tex",
@@ -56,7 +56,7 @@
         {
             "type": "hide",
             "obj": "sun",
-            "start": 2
+            "start": 2000
         },
         {
             "type": "show",
