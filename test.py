@@ -14,7 +14,7 @@ font = mygame.font.SysFont(default_font, 20)
 
 mp = Mapper()
 Action.mp = mp
-mp.load("stage1.js")
+mp.load("stage1.json")
 
 cntClock = 0
 cntFrame = 0

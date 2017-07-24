@@ -11,6 +11,8 @@ class Action:
             self.offset = arg["offset"]
         elif self.kind == "change_tex":
             self.tex = arg["tex"]
+        elif self.kind == "rotate":
+            self.v = arg.get("v", 1)
     def update(self, clock):
         if clock > self.end:
             self.dead = True
@@ -24,4 +26,7 @@ class Action:
                 self.obj.moveto(tar)
             elif self.kind == "change_tex":
                 self.obj.load_tex(self.tex)
+        # trigger
+        if self.kind == "rotate":
+            self.obj.rotate(self.v * clock / 180.0 * 3.1415)
         self.running = True

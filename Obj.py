@@ -6,11 +6,12 @@ from Defines import *
 class Obj:
     def __init__(self, args):
         self.name = args["name"]
+        self.angle = 0
+        self.scale = args.get("scale", 1.0)
+        self.load_tex(args["tex"])
         self.realPos = copy.copy(args["pos"]) 
         self.tarPos = copy.copy(args["pos"]) 
         self.v = 1
-        self.scale = args.get("scale", 1.0)
-        self.load_tex(args["tex"])
     def load_tex(self, filename):
         im = mygame.image.load("res/" + filename) 
         w, h = im.get_size()
@@ -33,7 +34,12 @@ class Obj:
                     if self.realPos[i] < self.tarPos[i]:
                         self.realPos[i] = self.tarPos[i]
     def draw(self, screen):
-        screen.blit(self.tex, (self.realx, self.realy))
+        ow, oh = self.tex.get_size()
+        tex = pygame.transform.rotate(self.tex, self.angle) 
+        siz = tex.get_size()
+        cx = self.realx - siz[0] / 2 + ow / 2
+        cy = self.realy - siz[1] / 2 + oh / 2 
+        screen.blit(tex, (cx, cy))
     def moveto(self, target):
         for i in range(len(target)):
             self.tarPos[i] = target[i]
@@ -55,4 +61,5 @@ class Obj:
     @realz.setter
     def realz(self, value):
         self.realPos[2] = value
-
+    def rotate(self, v):
+        self.angle += v
