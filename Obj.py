@@ -12,8 +12,10 @@ class Obj:
         self.realPos = copy.copy(args["pos"]) 
         self.tarPos = copy.copy(args["pos"]) 
         self.v = 1
+        self.hide = False
     def load_tex(self, filename):
         im = mygame.image.load("res/" + filename) 
+        '''
         w, h = im.get_size()
         tw = int(w * self.scale)
         th = int(h * self.scale)
@@ -21,7 +23,9 @@ class Obj:
             im = pygame.transform.smoothscale(im, (tw, th)).convert_alpha() 
         except:
             im = pygame.transform.scale(im, (tw, th)).convert_alpha() 
+        '''
         self.tex = im
+        self.ow, self.oh = self.tex.get_size()
     def update(self, clock):
         for i in range(3):
             if (self.realPos[i] != self.tarPos[i]):
@@ -34,11 +38,12 @@ class Obj:
                     if self.realPos[i] < self.tarPos[i]:
                         self.realPos[i] = self.tarPos[i]
     def draw(self, screen):
-        ow, oh = self.tex.get_size()
-        tex = pygame.transform.rotate(self.tex, self.angle) 
+        if self.hide:
+            return
+        tex = pygame.transform.rotozoom(self.tex, self.angle, self.scale) 
         siz = tex.get_size()
-        cx = self.realx - siz[0] / 2 + ow / 2
-        cy = self.realy - siz[1] / 2 + oh / 2 
+        cx = self.realx - siz[0] / 2 + self.ow * self.scale / 2
+        cy = self.realy - siz[1] / 2 + self.oh * self.scale / 2 
         screen.blit(tex, (cx, cy))
     def moveto(self, target):
         for i in range(len(target)):
@@ -63,3 +68,5 @@ class Obj:
         self.realPos[2] = value
     def rotate(self, v):
         self.angle += v
+    def toscale(self, v):
+        self.scale += v

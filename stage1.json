@@ -43,8 +43,25 @@
         {
             "type": "rotate",
             "obj": "sun",
-            "v": 0.002,
+            "v": 2,
             "start": 1
+        },
+        {
+            "type": "scale",
+            "obj": "sun",
+            "v": 0.01,
+            "start": 1,
+            "tovalue": 0.5
+        },
+        {
+            "type": "hide",
+            "obj": "sun",
+            "start": 2
+        },
+        {
+            "type": "show",
+            "obj": "sun",
+            "start": 4
         }
 	]
 }
