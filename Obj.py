@@ -12,7 +12,7 @@ class Obj:
         self.realPos = copy.copy(args["pos"]) 
         self.tarPos = copy.copy(args["pos"]) 
         self.v = 1
-        self.hide = False
+        self.hide = args.get("hide", False) 
     def load_tex(self, filename):
         im = mygame.image.load("res/" + filename) 
         '''

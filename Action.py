@@ -1,8 +1,10 @@
 class Action:
     mp = None
+    screen = None
     def __init__(self, arg):
         self.kind = arg["type"]
-        self.obj = Action.mp.get_obj(arg["obj"])
+        if "obj" in arg:
+            self.obj = Action.mp.get_obj(arg["obj"])
         self.start = arg["start"] * 1000
         self.end = arg.get("end", 10240) * 1000
         self.dead = False
@@ -14,6 +16,9 @@ class Action:
         elif self.kind in ["rotate", "scale"]:
             self.v = arg.get("v", 1)
             self.tovalue = arg.get("tovalue", None)
+        elif self.kind == "move_screen":
+            self.offset = arg["offset"]
+            self.v = arg["v"]
     def update(self, clock):
         if clock > self.end:
             self.dead = True
@@ -46,5 +51,17 @@ class Action:
                 if d * self.v < 0:
                     self.obj.scale = self.tovalue
                     self.dead = True
+        elif self.kind == "move_screen":
+            screen = Action.screen
+            dx = self.offset[0] - screen.display_x
+            dy = self.offset[1] - screen.display_y
+            ok = False
+            if dx * self.v > 0:
+                screen.display_x += self.v * clock / 1000.0
+                ok = True
+            if dy * self.v > 0:
+                screen.display_y += self.v * clock / 1000.0
+                ok = True
+            self.dead = not ok
 
         self.running = True

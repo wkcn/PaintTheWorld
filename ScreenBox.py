@@ -57,6 +57,7 @@ class ScreenBox:
         self.surface.blit(pic, (x * r, y * r))
         #self.surface.blit(pic, pos)
     def is_in_box(self, pos):
+        return True
         if pos[0] >= 0 and pos[1] >= 0:
             if pos[0] < self.boxRW and pos[1] < self.boxRH:
                 return True

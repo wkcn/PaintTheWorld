@@ -62,6 +62,12 @@
             "type": "show",
             "obj": "sun",
             "start": 4
+        },
+        {   
+            "type": "move_screen",
+            "offset": [200, 0],
+            "start": 3,
+            "v": 1
         }
 	]
 }
