@@ -13,6 +13,9 @@ class Action:
         self.running = False
         if self.kind == "move":
             self.offset = arg["offset"]
+            print (arg)
+            self.v = arg.get("v", 1) 
+            print (self.v)
         elif self.kind == "change_tex":
             self.tex = arg["tex"]
         elif self.kind in ["rotate", "scale"]:
@@ -48,6 +51,7 @@ class Action:
             # First
             if self.kind == "move":
                 tar = (self.obj.realx + self.offset[0], self.obj.realy + self.offset[1])
+                self.obj.v = self.v
                 self.obj.moveto(tar)
             elif self.kind == "change_tex":
                 self.obj.load_tex(self.tex)

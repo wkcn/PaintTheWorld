@@ -57,6 +57,8 @@ hide: [bool]对象初始时是否隐藏
 
 obj为被操作的对象，start为开始动作的秒数，offset为位移
 
+v为速度[可选参数], 约为每秒移动的像素点数
+
 ```json
 {
 	"type": "move",
