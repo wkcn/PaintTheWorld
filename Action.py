@@ -7,7 +7,7 @@ class Action:
         self.kind = arg["type"]
         if "obj" in arg:
             self.obj = Action.mp.get_obj(arg["obj"])
-        self.start = arg["start"]
+        self.start = arg["start"] * 1000
         self.end = arg.get("end", 10240) * 1000
         self.dead = False
         self.running = False
