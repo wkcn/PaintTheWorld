@@ -13,9 +13,7 @@ class Action:
         self.running = False
         if self.kind == "move":
             self.offset = arg["offset"]
-            print (arg)
             self.v = arg.get("v", 1) 
-            print (self.v)
         elif self.kind == "change_tex":
             self.tex = arg["tex"]
         elif self.kind in ["rotate", "scale"]:
