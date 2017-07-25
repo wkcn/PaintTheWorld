@@ -68,6 +68,12 @@
             "offset": [200, 0],
             "start": 3,
             "v": 1
+        },
+        {
+            "type": "caption",
+            "caption": "Hello, XiaoMing!",
+            "start":2,
+            "end": 10
         }
 	]
 }

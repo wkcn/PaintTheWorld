@@ -166,3 +166,15 @@ tovalue: 目标比例
 	"kind": "bird"
 }
 ```
+
+- 显示字幕
+
+可选参数: end 字幕结束时间
+
+```json
+{
+    "type": "caption",
+    "caption": "Hello, XiaoMing!",
+    "start":2
+}
+```

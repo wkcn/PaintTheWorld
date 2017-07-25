@@ -11,6 +11,9 @@ class Mapper:
         self.objs = []
         self.objs_map = dict()
         self.actions = []
+        self.paused = False
+        self.brush = None
+        self.caption = ""
     def load(self, filename):
         self.clear()
         fin = open(filename, "r")
@@ -27,9 +30,14 @@ class Mapper:
             a = Action(ac)
             self.actions.append(a)
     def update(self, clock):
-        self.clock += clock
         for o in self.objs:
             o.update(clock)
+
+        if self.paused:
+            return
+
+        self.clock += clock
+
         for a in self.actions:
             a.update(self.clock)
         self.actions = [a for a in self.actions if not a.dead]
@@ -40,3 +48,7 @@ class Mapper:
             o.draw(screen)
     def get_obj(self, name):
         return self.objs_map[name]
+    def cont(self):
+        self.paused = False
+    def pause(self):
+        self.paused = True

@@ -7,7 +7,7 @@ class Action:
         self.kind = arg["type"]
         if "obj" in arg:
             self.obj = Action.mp.get_obj(arg["obj"])
-        self.start = arg["start"] * 1000
+        self.start = arg["start"]
         self.end = arg.get("end", 10240) * 1000
         self.dead = False
         self.running = False
@@ -25,12 +25,21 @@ class Action:
             self.seq = arg["seq"]
             self.v = arg["v"]
             self.t = 0.0
+        elif self.kind == "draw":
+            self.window = arg["window"]
+            self.objkind = arg["kind"]
+        elif self.kind == "caption":
+            self.caption = arg["caption"]
         elif self.kind in ["hide", "show"]:
             pass
         else:
             raise TypeError("Unknown Type %s" % self.kind)
     def update(self, clock):
+        # ms
         if clock > self.end:
+            if self.kind == "caption":
+                if Action.mp.caption == self.caption:
+                    Action.mp.caption = ""
             self.dead = True
             return
         if clock < self.start:
@@ -46,6 +55,17 @@ class Action:
                 self.obj.hide = True
             elif self.kind == "show":
                 self.obj.hide = False 
+            elif self.kind == "pause":
+                Action.mp.pause()
+            elif self.kind == "draw":
+                self.brush.set_window(self.window)
+                self.brush.open()
+                Action.mp.pause() 
+            elif self.kind == "caption":
+                Action.mp.caption = self.caption
+                if self.end == -1:
+                    Action.mp.pause()
+
         # trigger
         if self.kind == "rotate":
             self.obj.rotate(self.v * clock / 180.0 * 3.1415 / 1000)
