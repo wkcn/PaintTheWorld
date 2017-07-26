@@ -103,7 +103,8 @@ def sun(df):
 		"type":"draw",
 		"window":[100,100,200,200],
 		"kind":"太阳",
-		"start":0.9
+		"start":0.9,
+        "rep":"sun"
 	}
 	df['actions'].append(m)
 	#create sun
@@ -146,7 +147,8 @@ def cloud(df):
 		"type":"draw",
 		"window":[400,0,200,200],
 		"kind":"云",
-		"start":3
+		"start":3,
+        "rep":"cloud"
 	}
 	df['actions'].append(m)
 	#create cloud
@@ -327,6 +329,7 @@ def human(df):
 	df['actions'].append(m)
 
 
+
 	m={
         "type":"caption",
         "caption":"小朋友的眼睛鼻子嘴长什么样呢？",
@@ -388,20 +391,41 @@ def kitchen(df):
 		'hide':True
 	}
 	df['obj'].append(m)
+
+
+	m={
+		"name":"food",
+		"tex":"paint/house_inside9.jpg",
+		"pos":[983,527,2],
+		"scale":1.0,
+		'hide':True
+	}
+	df['obj'].append(m)
+
 	m={
 		"type":"show",
 		"obj":"kitchen",
 		"start":19
 	}
 	df['actions'].append(m)
+
+
 	#draw breakfast
 	m={
 		"type":"draw",
 		"window":[650,220,100,100],
         "kind":["苹果", "香蕉", "面包", "蛋糕", "鱼", "汉堡", "热狗", "冰淇淋", "龙虾", "梨", "菠萝","番茄", "公鸡"],
-		"start":24
+		"start":24,
+        "rep":"food"
 	}
 	df['actions'].append(m)	
+	m={
+		"type":"show",
+		"obj":"food",
+		"start":24.2
+	}
+	df['actions'].append(m)
+
 
 
 	m={
@@ -582,6 +606,7 @@ def beat_monster(df):
 		"start":31
 	}
 	df['actions'].append(m)
+
 	m={
 		"name":"monster",
 		"tex":"paint/bc3c66bac6c21ab1896f37b663d34a64.png",
@@ -590,6 +615,17 @@ def beat_monster(df):
 		'hide':True
 	}
 	df['obj'].append(m)
+
+	m={
+		"name":"weapon",
+		"tex":"paint/bc3c66bac6c21ab1896f37b663d34a64.png",
+		"pos":[587,645,0],
+		"scale":0.2,
+		'hide':True
+	}
+
+	df['obj'].append(m)
+
 	m={
 		"type":"show",
 		"obj":"monster",
@@ -615,11 +651,41 @@ def beat_monster(df):
 	#draw weapon
 	m={
 		"type":"draw",
-		"window":[300,470,100,100],
+		"window":[280,470,100,100],
 		"kind":["苹果", "斧头", "香蕉", "啤酒杯", "长椅", "书", "碗", "回旋镖", "萝卜", "飞碟", "叉子", "平底锅", "步枪", "剪刀", "螺丝刀", "网球拍", "轮胎", "番茄"],
-		"start":35
+		"start":35,
+        "rep":"weapon"
 	}
+
+
 	df['actions'].append(m)	
+
+
+	m={
+		"type":"show",
+		"obj":"weapon",
+		"start":35.1
+	}
+	df['actions'].append(m)
+
+	m={
+		"type":"move",
+		"obj":"weapon",
+		"start":35.2,
+        "offset":[600, 0],
+        "v":3
+	}
+	df['actions'].append(m)
+
+	m={
+		"type":"rotate",
+		"obj":"weapon",
+		"v":5,
+		"start":35.2
+	}
+	df['actions'].append(m)
+
+
 	m={
 		"type":"hide",
 		"obj":"monster",

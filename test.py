@@ -97,29 +97,25 @@ while 1:
                 # draw face!
                 print ("draw face")
                 brush.thick(2)
-                bim = brush.get_pic().astype(np.uint8)
-                r,c = bim.shape
-
-                '''
-                b = (bim == 0)
-                for i in range(1, 2):
-                    b[:-i,:] |= b[i:,:] 
-                    b[i:,:] |= b[:-i,:] 
-                    b[:, :-i] |= b[:, i:] 
-                    b[:, i:] |= b[:, :-i] 
-                bim = ((~b) * 255).astype(np.uint8)
-                '''
-
-
-                im = np.zeros((r,c,4)).astype(np.uint8)
-                im[bim == 0,3] = 255
-                pim = Image.fromarray(im).filter(ImageFilter.EDGE_ENHANCE)
-                pim.save("./res/face.png")
+                fn = "./res/create/face.png"
+                brush.save_png(fn)
                 for o in mp.objs:
                     if o.people:
-                        o.set_face(pygame.image.load("./res/face.png"))
+                        o.set_face(pygame.image.load(fn))
                 print ("face ok")
             brush.close()
+
+            # replace im
+            if brush.obj is not None:
+                fn = "/create/%s.png" % brush.obj
+                brush.save_png("./res/" + fn)
+                for o in mp.objs:
+                    if o.name[:len(brush.obj)] == brush.obj:
+                        o.scale = brush.ratio 
+                        o.load_tex(fn)
+
+                brush.obj = False
+
             mp.goon()
             lastClock = None
             mp.caption = "这是%s :-)" % brush.label

@@ -3,7 +3,7 @@ import pygame
 import mygame
 import math
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageFilter
 import io
 import model_api
 import json
@@ -18,6 +18,7 @@ class Brush():
         self.space = 1
         self.npoints = []
         self.face = False
+        self.obj = None
 
         self.x = 0
         self.y = 0
@@ -37,6 +38,7 @@ class Brush():
         self.xiaoming = pygame.image.load("./res/paint/face.png")
         self.ready = False 
 
+        self.ratio = 1.0
         self.stop_clock = 0
         self.objkind = ""
         self.ys = []
@@ -55,6 +57,7 @@ class Brush():
         full_window = [250,150,300,300]
         self.x, self.y, self.w, self.h = full_window
         self.bx, self.by, self.bw, self.bh = window
+        self.ratio = max(self.bw * 1.0 / self.w, self.bw * 1.0 / self.h)
         #self.bim = self.screen.subsurface((self.bx, self.by), (self.bw, self.bh)) 
         if self.face:
             self.bim = pygame.transform.scale(pygame.image.load("res/board.png"), (800, 600))
@@ -179,6 +182,14 @@ class Brush():
         x = max(int((1.0 - t) * sx + t * bx), 0)
         y = max(int((1.0 - t) * sy + t * by), 0)
         return (x,y,w,h)
+
+    def save_png(self, filename):
+        bim = self.get_pic().astype(np.uint8)
+        r,c = bim.shape
+        im = np.zeros((r,c,4)).astype(np.uint8)
+        im[bim == 0,3] = 255
+        pim = Image.fromarray(im).filter(ImageFilter.EDGE_ENHANCE)
+        pim.save(filename)
 
 
     def get_cpos(self, t, s, b):

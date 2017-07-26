@@ -30,6 +30,7 @@ class Action:
             self.window = arg["window"]
             self.objkind = arg["kind"]
             self.face = arg.get("face", False)
+            self.rep = arg.get("rep", None)
         elif self.kind == "caption":
             self.caption = arg["caption"]
             self.black = arg.get("black", False)
@@ -71,6 +72,7 @@ class Action:
                 Action.mp.brush.open()
                 Action.mp.brush.set_objkind(self.objkind)
                 Action.mp.pause() 
+                Action.mp.brush.obj = self.rep
             elif self.kind == "caption":
                 Action.mp.caption = self.caption
                 Action.mp.black = self.black
