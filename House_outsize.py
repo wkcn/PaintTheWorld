@@ -482,7 +482,7 @@ def time_travel(df):
 	m={
 		"name":"time_machine",
 		"tex":"paint/time_machine.png",
-		"pos":[450,600,0],
+		"pos":[650,450,0],
 		"scale":0.75,
 		'hide':True
 	}
@@ -496,7 +496,7 @@ def time_travel(df):
 	m={
 		"name":"human_2",
 		"tex":"paint/boy2.png",
-		"pos":[560,720,0],
+		"pos":[760,560,0],
 		"scale":0.15,
 		'hide':True
 	}
@@ -512,7 +512,7 @@ def time_travel(df):
 		"obj":'time_machine',
 		"start":28,
 		'v':1,
-		"offset":[200,-200]
+		"offset":[-200,200]
 	}
 	df['actions'].append(m)
 	m={
@@ -520,7 +520,7 @@ def time_travel(df):
 		"obj":'human_2',
 		"start":28,
 		'v':1,
-		"offset":[200,-200]
+		"offset":[-200,200]
 	}
 	df['actions'].append(m)
 	return df
