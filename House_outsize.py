@@ -446,26 +446,21 @@ def human_1(df):
 	df['actions'].append(m)
 	return df
 
-def tunnel(df):
-	#create obj
-	m={
-		"name":"kitchen",
-		"tex":"paint/house_inside9.jpg",
-		"pos":[300,300,0],
-		"scale":0.5,
-		'hide':True
-	}
-	df['obj'].append(m)
-	m={
-		"type":"show",
-		"obj":"kitchen",
-		"start":19
-	}
-	df['actions'].append(m)
-	return df
+
 
 def time_travel(df):
-
+	m={
+        "type":"caption",
+        "caption":"嗯！吃饱了就可以出门啦！",
+        "start":24.9,
+    }
+	df['actions'].append(m)
+	m={
+        "type":"caption",
+        "caption":"那接下来进行时光之旅吧！",
+        "start":25.9,
+    }
+	df['actions'].append(m)
 	m={
 		"name":"tunnel",
 		"tex":"paint/tunnel2.jpg",
@@ -479,25 +474,13 @@ def time_travel(df):
 	m={
 		"type":"show",
 		"obj":"tunnel",
-		"start":25
+		"start":28
 	}
-
-
-	df['actions'].append(m)
-	m={
-        "type":"caption",
-        "caption":"嗯！吃饱了就可以出门啦！",
-        "start":24.9,
-        "black": True
-    }
-	df['actions'].append(m)
-
-
 	df['actions'].append(m)
 	m={
 		"name":"time_machine",
 		"tex":"paint/time_machine.png",
-		"pos":[450,600,0],
+		"pos":[650,450,0],
 		"scale":0.75,
 		'hide':True
 	}
@@ -505,13 +488,13 @@ def time_travel(df):
 	m={
 		"type":"show",
 		"obj":"time_machine",
-		"start":25
+		"start":28
 	}
 	df['actions'].append(m)
 	m={
 		"name":"human_2",
 		"tex":"paint/boy2.png",
-		"pos":[560,720,0],
+		"pos":[760,560,0],
 		"scale":0.15,
 		'hide':True
 	}
@@ -519,28 +502,58 @@ def time_travel(df):
 	m={
 		"type":"show",
 		"obj":"human_2",
-		"start":25
+		"start":28
 	}
 	df['actions'].append(m)
 	m={
 		"type":'move',
 		"obj":'time_machine',
-		"start":25,
+		"start":28,
 		'v':1,
-		"offset":[200,-200]
+		"offset":[-200,200]
 	}
 	df['actions'].append(m)
 	m={
 		"type":'move',
 		"obj":'human_2',
-		"start":25,
+		"start":28,
 		'v':1,
-		"offset":[200,-200]
+		"offset":[-200,200]
 	}
 	df['actions'].append(m)
 	return df
 
 def beat_monster(df):
+	m={
+        "type":"caption",
+        "caption":"来到远古时代了耶！",
+        "start":31,
+    }
+	df['actions'].append(m)
+	m={
+        "type":"caption",
+        "caption":"不好,前面出现了怪物！",
+        "start":33,
+    }
+	df['actions'].append(m)
+	m={
+        "type":"caption",
+        "caption":"该用什么武器？",
+        "start":35,
+    }
+	df['actions'].append(m)
+	m={
+        "type":"caption",
+        "caption":"我们打败怪兽了耶！",
+        "start":36,
+    }
+	df['actions'].append(m)
+	m={
+        "type":"caption",
+        "caption":"我们继续旅行吧！",
+        "start":37.5,
+    }
+	df['actions'].append(m)
 	m={
 		"name":"scene",
 		"tex":"paint/cartoon-stone-forest-scene-3d-model-max.jpg",
@@ -552,7 +565,7 @@ def beat_monster(df):
 	m={
 		"type":"show",
 		"obj":"scene",
-		"start":28
+		"start":31
 	}
 	df['actions'].append(m)
 	m={
@@ -566,7 +579,7 @@ def beat_monster(df):
 	m={
 		"type":"show",
 		"obj":"human_3",
-		"start":28
+		"start":31
 	}
 	df['actions'].append(m)
 	m={
@@ -580,13 +593,13 @@ def beat_monster(df):
 	m={
 		"type":"show",
 		"obj":"monster",
-		"start":28
+		"start":33
 	}
 	df['actions'].append(m)
 	m={
 		"type":'move',
 		"obj":'human_3',
-		"start":29,
+		"start":31,
 		'v':2,
 		"offset":[200,0]
 	}
@@ -594,7 +607,7 @@ def beat_monster(df):
 	m={
 		"type":'move',
 		"obj":'monster',
-		"start":29,
+		"start":33,
 		'v':2,
 		"offset":[-200,0]
 	}
@@ -604,19 +617,19 @@ def beat_monster(df):
 		"type":"draw",
 		"window":[300,470,100,100],
 		"kind":["苹果", "斧头", "香蕉", "啤酒杯", "长椅", "书", "碗", "回旋镖", "萝卜", "飞碟", "叉子", "平底锅", "步枪", "剪刀", "螺丝刀", "网球拍", "轮胎", "番茄"],
-		"start":31
+		"start":35
 	}
 	df['actions'].append(m)	
 	m={
 		"type":"hide",
 		"obj":"monster",
-		"start":32
+		"start":36
 	}
 	df['actions'].append(m)
 	m={
 		"type":'move',
 		"obj":'human_3',
-		"start":32,
+		"start":37.5,
 		'v':2,
 		"offset":[450,0]
 	}
@@ -636,10 +649,10 @@ df=clear(df,19)
 
 df=kitchen(df)
 df=human_1(df)
-df=clear(df,25)
+df=clear(df,28)
 
 df=time_travel(df)
-df=clear(df,28)
+df=clear(df,31)
 
 df=beat_monster(df)
 #df=test(df)
