@@ -83,14 +83,29 @@ def house(df):
 	return df
 
 def sun(df):
+	#draw sun
+	m={
+		"type":"draw",
+		"window":[100,0,200,200],
+		"kind":"sun",
+		"start":1
+	}
+	df['actions'].append(m)
 	#create sun
 	m={
 		"name":"sun",
 		"tex":"paint/sun.png",
 		"pos":[150,80,0],
-		"scale":1
+		"scale":1,
+		'hide':True
 	}
 	df['obj'].append(m)
+	m={
+		"type":"show",
+		"obj":"sun",
+		"start":1
+	}
+	df['actions'].append(m)
 	#move and rotate
 	m={
 		"type":'move',
@@ -111,6 +126,14 @@ def sun(df):
 
 def cloud(df):
 	interval_time=3
+	#draw cloud
+	m={
+		"type":"draw",
+		"window":[300,0,500,100],
+		"kind":"cloud",
+		"start":3
+	}
+	df['actions'].append(m)
 	#create cloud
 	for i in range(4):
 		m={
@@ -124,13 +147,13 @@ def cloud(df):
 		m={
 			'type':"show",
 			'obj':"cloud"+str(i),
-			"start":2+interval_time*i+random.randint(-interval_time+1,0)
+			"start":4+interval_time*i+random.randint(-interval_time+1,0)
 		}
 		df['actions'].append(m)
 		m={
 			"type":"move",
 			'obj':"cloud"+str(i),
-			"start":2+interval_time*i+random.randint(-interval_time+1,0),
+			"start":4+interval_time*i+random.randint(-interval_time+1,0),
 			"offset":[-1200,0]
 		}
 		df['actions'].append(m)
@@ -205,6 +228,20 @@ def human(df):
 	}
 	df['actions'].append(m)
 	m={
+		"name":"b",
+		"tex":"board.png",
+		"pos":[600,650,0],
+		"scale":0.35,
+		'hide':True
+	}
+	df['obj'].append(m)
+	m={
+		"type":"show",
+		"obj":"b",
+		"start":12
+	}
+	df['actions'].append(m)
+	m={
 		"type":"bezier",
 		"obj":"human",
 		"start":13,
@@ -221,6 +258,31 @@ def human(df):
 		"offset":[100,-210]
 	}
 	df['actions'].append(m)
+	m={
+		"type":"bezier",
+		"obj":"b",
+		"start":13,
+		"end":15,
+		"seq":[[600,650],[800,650],[900,550]],
+		"v":0.001
+	}
+	df['actions'].append(m)
+	m={
+		"type":'move',
+		"obj":'b',
+		"start":15,
+		'v':2,
+		"offset":[100,-210]
+	}
+	df['actions'].append(m)
+	#draw face
+	m={
+		"type":"draw",
+		"window":[300,0,0,0],
+		"kind":"face",
+		"start":17
+	}
+	df['actions'].append(m)	
 	return df
 
 def kitchen(df):
@@ -239,6 +301,14 @@ def kitchen(df):
 		"start":19
 	}
 	df['actions'].append(m)
+	#draw breakfast
+	m={
+		"type":"draw",
+		"window":[650,250,100,100],
+		"kind":"face",
+		"start":24
+	}
+	df['actions'].append(m)	
 	return df
 
 def human_1(df):
@@ -412,7 +482,14 @@ def beat_monster(df):
 		"offset":[-200,0]
 	}
 	df['actions'].append(m)
-
+	#draw weapon
+	m={
+		"type":"draw",
+		"window":[300,470,100,100],
+		"kind":"weapon",
+		"start":31
+	}
+	df['actions'].append(m)	
 	m={
 		"type":"hide",
 		"obj":"monster",
