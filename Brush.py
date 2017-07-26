@@ -69,6 +69,8 @@ class Brush():
 
     def draw(self, pos):
         WIDTH = 0
+        #if self.face:
+        #    WIDTH = 3
         if not self.opened:
             return
         if self.drawing:

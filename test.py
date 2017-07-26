@@ -7,7 +7,7 @@ from Mapper import *
 from Action import *
 from Obj import *
 import Brush
-from PIL import Image
+from PIL import Image, ImageFilter
 import io
 import numpy as np
 
@@ -48,7 +48,10 @@ def print_pos(p):
     print ("global_pos: %s, mouse_pos: %s, offset: %s" % (str(g), str(p), str(offset)))
     last_mouse_pos = p
 
-ratio = 5
+# DEBUG
+# PLAY SPEED
+ratio = 1
+
 while 1:
     for event in mygame.event.get():
         if event.type == QUIT:
@@ -86,11 +89,21 @@ while 1:
                 # draw face!
                 bim = brush.get_pic().astype(np.uint8)
                 r,c = bim.shape
+                b = (bim == 0)
+                for i in range(1, 2):
+                    b[:-i,:] |= b[i:,:] 
+                    b[i:,:] |= b[:-i,:] 
+                    b[:, :-i] |= b[:, i:] 
+                    b[:, i:] |= b[:, :-i] 
+                bim = ((~b) * 255).astype(np.uint8)
+
                 im = np.zeros((r,c,4)).astype(np.uint8)
                 im[bim == 0,3] = 255
-                pim = Image.fromarray(im)
+                pim = Image.fromarray(im).filter(ImageFilter.EDGE_ENHANCE)
                 pim.save("./res/face.png")
-                Obj.FACE = pygame.image.load("./res/face.png")
+                for o in mp.objs:
+                    if o.people:
+                        o.set_face(pygame.image.load("./res/face.png"))
                 pass
             brush.close()
             mp.goon()

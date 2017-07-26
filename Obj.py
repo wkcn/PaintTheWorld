@@ -4,11 +4,11 @@ import copy
 from Defines import *
 
 class Obj:
-    FACE = None
     def __init__(self, args):
         self.name = args["name"]
         self.people = (self.name[:5] == "human")
         self.angle = 0
+        self.face = None
         self.scale = args.get("scale", 1.0)
         self.load_tex(args["tex"])
         self.realPos = copy.copy(args["pos"]) 
@@ -17,6 +17,7 @@ class Obj:
         self.hide = args.get("hide", False) 
     def load_tex(self, filename):
         im = mygame.image.load("res/" + filename) 
+        self.filename = filename
         '''
         w, h = im.get_size()
         tw = int(w * self.scale)
@@ -27,7 +28,12 @@ class Obj:
             im = pygame.transform.scale(im, (tw, th)).convert_alpha() 
         '''
         self.tex = im
+        if self.face is not None:
+            self.tex.blit(self.face, (85, 150))
         self.ow, self.oh = self.tex.get_size()
+    def set_face(self, face):
+        self.face = face
+        self.load_tex(self.filename)
     def update(self, clock):
         for i in range(3):
             if (self.realPos[i] != self.tarPos[i]):
@@ -47,8 +53,6 @@ class Obj:
         cx = self.realx - siz[0] / 2 + self.ow * self.scale / 2
         cy = self.realy - siz[1] / 2 + self.oh * self.scale / 2 
         screen.blit(tex, (cx, cy))
-        if self.people and Obj.FACE is not None:
-            screen.blit(Obj.FACE, (cx, cy)) 
     def moveto(self, target):
         for i in range(len(target)):
             self.tarPos[i] = target[i]
