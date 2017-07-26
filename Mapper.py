@@ -14,6 +14,7 @@ class Mapper:
         self.paused = False
         self.brush = None
         self.caption = ""
+        self.black = False
     def load(self, filename):
         self.clear()
         fin = open(filename, "r")

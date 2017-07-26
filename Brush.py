@@ -99,7 +99,8 @@ class Brush():
         if self.bim is not None:
             #self.board_pic = pygame.transform.scale(self.bim, (w, h)).convert()
             self.board_pic = pygame.transform.scale(self.bim.subsurface((x,y),(w,h)), (800, 600))
-        self.screen.blit(self.board_pic, (0, 0))
+        if not self.face:
+            self.screen.blit(self.board_pic, (0, 0))
 
     def update(self, clock):
         if not self.opened:
@@ -114,7 +115,8 @@ class Brush():
             self.t = min(1.0, self.t + clock / 1000 * 1.5)
             self.draw_bim()
             return
-        self.screen.blit(self.board_pic, (0, 0))
+        if not self.face:
+            self.screen.blit(self.board_pic, (0, 0))
 
         if self.face:
             self.screen.blit(self.xiaoming, (165, 0))

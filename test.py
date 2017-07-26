@@ -50,7 +50,7 @@ def print_pos(p):
 
 # DEBUG
 # PLAY SPEED
-ratio = 1
+ratio = 2
 
 while 1:
     for event in mygame.event.get():
@@ -64,6 +64,7 @@ while 1:
             elif event.key == K_p:
                 if mp.paused:
                     mp.goon()
+                    lastClock = None
                 else:
                     mp.pause()
         elif brush.opened:
@@ -87,6 +88,7 @@ while 1:
         if brush.right:
             if brush.face:
                 # draw face!
+                print ("draw face")
                 bim = brush.get_pic().astype(np.uint8)
                 r,c = bim.shape
                 b = (bim == 0)
@@ -104,18 +106,23 @@ while 1:
                 for o in mp.objs:
                     if o.people:
                         o.set_face(pygame.image.load("./res/face.png"))
-                pass
+                print ("face ok")
             brush.close()
             mp.goon()
+            lastClock = None
             mp.caption = "这是%s :-)" % brush.label
+            mp.black = False
         if brush.predicted:
             if len(brush.ys) > 0:
                 if not brush.right:
                     mp.caption = "这是%s吗" % brush.ys[0]
+                    mp.black = False
               
 
     nowClock = time.time() * 1000
-    intervalClock = nowClock - lastClock
+    if lastClock is None:
+        lastClock = nowClock
+    intervalClock = max(0, nowClock - lastClock)
     lastClock = nowClock
 
     mp.update(intervalClock * ratio)
@@ -129,7 +136,10 @@ while 1:
     screen.blit_fix(text_surface, (0, 0))
     '''
 
-    caption_surface = font2.render(mp.caption, True, (255, 255, 255))
+    if mp.black:
+        caption_surface = font2.render(mp.caption, True, (0,0,0))
+    else:
+        caption_surface = font2.render(mp.caption, True, (255, 255, 255))
     _len = len(mp.caption)
     x = (800 - _len * 50) / 2
     screen.blit_fix(caption_surface, (x, 520))

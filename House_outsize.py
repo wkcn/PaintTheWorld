@@ -397,7 +397,7 @@ def kitchen(df):
 	#draw breakfast
 	m={
 		"type":"draw",
-		"window":[650,250,100,100],
+		"window":[650,220,100,100],
         "kind":["苹果", "香蕉", "面包", "蛋糕", "鱼", "汉堡", "热狗", "冰淇淋", "龙虾", "梨", "菠萝","番茄", "公鸡"],
 		"start":24
 	}
@@ -484,7 +484,8 @@ def time_travel(df):
 	m={
         "type":"caption",
         "caption":"嗯！吃饱了就可以出门啦！",
-        "start":24.9
+        "start":24.9,
+        "black": True
     }
 	df['actions'].append(m)
 

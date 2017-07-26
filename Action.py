@@ -32,6 +32,7 @@ class Action:
             self.face = arg.get("face", False)
         elif self.kind == "caption":
             self.caption = arg["caption"]
+            self.black = arg.get("black", False)
         elif self.kind in ["hide", "show"]:
             pass
         else:
@@ -72,6 +73,7 @@ class Action:
                 Action.mp.pause() 
             elif self.kind == "caption":
                 Action.mp.caption = self.caption
+                Action.mp.black = self.black
                 if self.end == -1:
                     Action.mp.pause()
 
