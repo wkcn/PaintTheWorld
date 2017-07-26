@@ -87,8 +87,8 @@ def sun(df):
 	m={
 		"type":"draw",
 		"window":[100,0,200,200],
-		"kind":"sun",
-		"start":1
+		"kind":"太阳",
+		"start":0.9
 	}
 	df['actions'].append(m)
 	#create sun
@@ -130,7 +130,7 @@ def cloud(df):
 	m={
 		"type":"draw",
 		"window":[300,0,500,100],
-		"kind":"cloud",
+		"kind":"云",
 		"start":3
 	}
 	df['actions'].append(m)
@@ -279,7 +279,7 @@ def human(df):
 	m={
 		"type":"draw",
 		"window":[300,0,0,0],
-		"kind":"face",
+		"kind":["脸","鬼脸","头"],
 		"start":17
 	}
 	df['actions'].append(m)	
@@ -305,7 +305,7 @@ def kitchen(df):
 	m={
 		"type":"draw",
 		"window":[650,250,100,100],
-		"kind":"face",
+		"kind":["脸","鬼脸", "头"],
 		"start":24
 	}
 	df['actions'].append(m)	
@@ -486,7 +486,7 @@ def beat_monster(df):
 	m={
 		"type":"draw",
 		"window":[300,470,100,100],
-		"kind":"weapon",
+		"kind":["苹果", "斧头", "香蕉", "啤酒杯", "长椅", "书", "碗", "回旋镖", "萝卜", "飞碟", "叉子", "平底锅", "步枪", "剪刀", "螺丝刀", "网球拍", "轮胎", "番茄"],
 		"start":31
 	}
 	df['actions'].append(m)	

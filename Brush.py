@@ -22,8 +22,11 @@ class Brush():
         self.y = 0
         self.w = 10000
         self.h = 10000
+        self.t = 0
+        self.label = ""
 
         self.bx = self.by = self.bw = self.bh = 0
+        self.bim = None
 
         self.opened = False
         self.board_pic = None
@@ -33,9 +36,14 @@ class Brush():
 
         self.stop_clock = 0
         self.objkind = ""
+        self.ys = []
 
     def open(self):
         self.opened = True
+        self.ys = []
+        self.t = 0.0
+        self.stop_clock = 0
+        self.npoints = []
     def close(self):
         self.opened = False
 
@@ -43,9 +51,7 @@ class Brush():
         full_window = [250,150,300,300]
         self.x, self.y, self.w, self.h = full_window
         self.bx, self.by, self.bw, self.bh = window
-        im = mygame.image.load("res/" + "board.png") 
-        self.board_pic = pygame.transform.scale(im, (800, 600)).convert()
-        self.board_pic.set_alpha(100)
+        #self.bim = self.screen.subsurface((self.bx, self.by), (self.bw, self.bh)) 
 
         im = mygame.image.load("res/" + "board.png") 
         self.box_pic = pygame.transform.scale(im, (self.bw, self.bh)).convert()
@@ -72,9 +78,32 @@ class Brush():
                 pygame.draw.circle(self.screen,self.color, p, self.size)
 
             self.last_pos = pos
+
+    def draw_bim(self):
+        x,y,w,h = self.get_bpos(self.t, (self.bx, self.by, self.bw, self.bh), (0, 0, 800, 600)) 
+
+        if self.bim is not None:
+            self.board_pic = pygame.transform.scale(self.bim, (w, h)).convert()
+        self.screen.blit(self.board_pic, (x, y))
+
     def update(self, clock):
         if not self.opened:
+            if self.t > 0:
+                self.t = min(1.0, self.t - clock / 1000 * 2.5)
+                self.draw_bim()
             return
+
+
+        #if self.box_pic is not None:
+        #    self.screen.blit(self.box_pic, (self.bx, self.by))
+
+        # Open
+        if self.t < 1:
+            self.t = min(1.0, self.t + clock / 1000 * 1.5)
+            self.draw_bim()
+            return
+        self.screen.blit(self.board_pic, (0, 0))
+
         if self.drawing:
             self.stop_clock = 0
         else:
@@ -83,22 +112,48 @@ class Brush():
                 if self.stop_clock > 3000:
                     ys = self.predict()
                     print (self.objkind, ys)
-                    if self.objkind in ys:
-                        self.right = True
+                    if type(self.objkind) == list:
+                        for o in self.objkind:
+                            if o in ys:
+                                self.right = True
+                                self.label = o
+                                break
+                    else:
+                        if self.objkind in ys:
+                            self.right = True
+                            self.label = self.objkind
                     self.stop_clock = 0
                     self.predicted = True
+                    self.ys = ys
 
-        if self.board_pic is not None:
-            self.screen.blit(self.board_pic, (0, 0))
-        if self.box_pic is not None:
-            self.screen.blit(self.box_pic, (self.bx, self.by))
         for p in self.npoints:
             pygame.draw.circle(self.screen,self.color, p, self.size)
     def set_objkind(self, objkind):
         self.objkind = objkind
         self.right = False
+    def get_bpos(self, t, s, b):
+        sx,sy,sw,sh = s
+        bx,by,bw,bh = b
+        sw = max(1, sw)
+        sh = max(1, sh)
+        w = int(sw * (1.0 - t) + bw * t)
+        h = int(sh * (1.0 - t) + bh * t)
+        zh = int(w / sw * sh)
+        zw = int(h / sh * sw)
+
+        if w > zw:
+            h = zh
+        if h > zh:
+            w = zw
+
+        w = max(1, w)
+        h = max(1, h)
+        x = max(int((1.0 - t) * sx + t * bx), 0)
+        y = max(int((1.0 - t) * sy + t * by), 0)
+        return (x,y,w,h)
     def predict(self):
         # Check The Kind
+        print ("Predict...")
         im = self.get_pic()
         pim = Image.fromarray(np.uint8(im))
         output = io.BytesIO()

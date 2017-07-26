@@ -29,6 +29,7 @@ class Mapper:
         for ac in self.data["actions"]:
             a = Action(ac)
             self.actions.append(a)
+        self.actions.sort(key = lambda x:x.start)
     def update(self, clock):
         if self.paused:
             return
@@ -40,6 +41,8 @@ class Mapper:
 
         for a in self.actions:
             a.update(self.clock)
+            if self.paused:
+                break
         self.actions = [a for a in self.actions if not a.dead]
     def draw(self, screen):
         # layer

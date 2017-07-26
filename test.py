@@ -29,8 +29,10 @@ mp.brush = brush
 
 default_font = "arial"
 font = mygame.font.SysFont(default_font, 20)
-default_font2 = "sourcehansanscn"
-font2 = mygame.font.SysFont(default_font2, 40)
+#default_font2 = "sourcehansanscn"
+#font2 = mygame.font.SysFont(default_font2, 40)
+
+font2 = mygame.font.Font("./res/fzht.ttf", 50)
 
 last_mouse_pos = (0,0)
 
@@ -59,6 +61,7 @@ while 1:
                     print_pos(event.pos)
                 else:
                     brush.clear()
+                    mp.caption = ""
             elif event.type == MOUSEMOTION:
                 brush.draw(event.pos)
             elif event.type == MOUSEBUTTONUP:
@@ -67,10 +70,15 @@ while 1:
             if event.type == MOUSEBUTTONDOWN:
                 print_pos(event.pos)
 
-    if brush.opened and brush.right:
-        brush.right = False
-        brush.close()
-        mp.goon()
+    if brush.opened:
+        if brush.right:
+            brush.close()
+            mp.goon()
+            mp.caption = "这是%s :-)" % brush.label
+        if brush.predicted:
+            if len(brush.ys) > 0:
+                if not brush.right:
+                    mp.caption = "这是%s吗" % brush.ys[0]
               
 
     nowClock = time.time() * 1000
@@ -83,11 +91,13 @@ while 1:
 
     brush.update(intervalClock)
 
+    '''
     text_surface = font.render(u"FPS: %3.f" % NowFPS, True, (255, 0, 0))
     screen.blit_fix(text_surface, (0, 0))
+    '''
 
-    caption_surface = font2.render(mp.caption, True, (255, 0, 0))
-    screen.blit_fix(caption_surface, (200, 520))
+    caption_surface = font2.render(mp.caption, True, (255, 255, 255))
+    screen.blit_fix(caption_surface, (300, 520))
 
     mygame.display.update()
 
