@@ -38,7 +38,8 @@ def print_pos(p):
     global last_mouse_pos
     lp = last_mouse_pos
     offset = (p[0] - lp[0], p[1] - lp[1])
-    print ("mouse_pos: %s, offset: %s" % (str(p), str(offset)))
+    g = (int(p[0] + screen.display_x), int(p[1] + screen.display_y))
+    print ("global_pos: %s, mouse_pos: %s, offset: %s" % (str(g), str(p), str(offset)))
     last_mouse_pos = p
 
 while 1:
