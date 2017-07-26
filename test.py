@@ -5,7 +5,11 @@ from pygame.locals import *
 from sys import exit
 from Mapper import *
 from Action import *
+from Obj import *
 import Brush
+from PIL import Image
+import io
+import numpy as np
 
 mygame.init()
 screen = mygame.screen
@@ -72,6 +76,16 @@ while 1:
 
     if brush.opened:
         if brush.right:
+            if brush.face:
+                # draw face!
+                bim = brush.get_pic().astype(np.uint8)
+                r,c = bim.shape
+                im = np.zeros((r,c,4)).astype(np.uint8)
+                im[bim == 0,3] = 255
+                pim = Image.fromarray(im)
+                pim.save("./res/face.png")
+                Obj.FACE = pygame.image.load("./res/face.png")
+                pass
             brush.close()
             mp.goon()
             mp.caption = "这是%s :-)" % brush.label
@@ -97,7 +111,9 @@ while 1:
     '''
 
     caption_surface = font2.render(mp.caption, True, (255, 255, 255))
-    screen.blit_fix(caption_surface, (300, 520))
+    _len = len(mp.caption)
+    x = (800 - _len * 50) / 2
+    screen.blit_fix(caption_surface, (x, 520))
 
     mygame.display.update()
 

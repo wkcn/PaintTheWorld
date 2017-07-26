@@ -4,8 +4,10 @@ import copy
 from Defines import *
 
 class Obj:
+    FACE = None
     def __init__(self, args):
         self.name = args["name"]
+        self.people = (self.name[:5] == "human")
         self.angle = 0
         self.scale = args.get("scale", 1.0)
         self.load_tex(args["tex"])
@@ -45,6 +47,8 @@ class Obj:
         cx = self.realx - siz[0] / 2 + self.ow * self.scale / 2
         cy = self.realy - siz[1] / 2 + self.oh * self.scale / 2 
         screen.blit(tex, (cx, cy))
+        if self.people and Obj.FACE is not None:
+            screen.blit(Obj.FACE, (cx, cy)) 
     def moveto(self, target):
         for i in range(len(target)):
             self.tarPos[i] = target[i]

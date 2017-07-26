@@ -1,3 +1,4 @@
+#coding=utf-8
 import json
 import random
 
@@ -80,6 +81,20 @@ def house(df):
 	}
 	df['actions'].append(m)
 
+	m={
+        "type":"caption",
+        "caption":"这是一个美好的早晨",
+        "start":0
+    }
+	df['actions'].append(m)
+
+	m={
+        "type":"caption",
+        "caption":"太阳公公起床了",
+        "start":0.9
+    }
+	df['actions'].append(m)
+
 	return df
 
 def sun(df):
@@ -157,9 +172,33 @@ def cloud(df):
 			"offset":[-1200,0]
 		}
 		df['actions'].append(m)
+
+
+	m={
+        "type":"caption",
+        "caption":"云朵飘啊飘",
+        "start":2.9
+    }
+	df['actions'].append(m)
+
 	return df
 
 def carema(df):
+
+	m={
+        "type":"caption",
+        "caption":"真是一幅生机勃勃的景象啊！",
+        "start":5
+    }
+	df['actions'].append(m)
+
+	m={
+        "type":"caption",
+        "caption":"让我们进入屋子里看看吧！",
+        "start":9.5
+    }
+	df['actions'].append(m)
+
 	m={   
 	"type": "move_screen",
 	"offset": [300, 300],
@@ -197,6 +236,14 @@ def clear(df,time):
 
 def house_inside(df):
 	#create obj
+
+	m={
+        "type":"caption",
+        "caption":"小朋友起床了",
+        "start":12
+    }
+	df['actions'].append(m)
+
 	m={
 		"name":"house_inside",
 		"tex":"paint/house_inside6.jpg",
@@ -221,6 +268,7 @@ def human(df):
 		'hide':True
 	}
 	df['obj'].append(m)
+
 	m={
 		"type":"show",
 		"obj":"human",
@@ -240,6 +288,16 @@ def human(df):
 		"obj":"b",
 		"start":12
 	}
+
+
+	m={
+        "type":"caption",
+        "caption":"他走到镜子前打扮",
+        "start":14
+    }
+	df['actions'].append(m)
+
+
 	df['actions'].append(m)
 	m={
 		"type":"bezier",
@@ -267,6 +325,16 @@ def human(df):
 		"v":0.001
 	}
 	df['actions'].append(m)
+
+
+	m={
+        "type":"caption",
+        "caption":"小朋友的眼睛鼻子嘴长什么样呢？",
+        "start":16
+    }
+	df['actions'].append(m)
+
+
 	m={
 		"type":'move',
 		"obj":'b',
@@ -280,13 +348,38 @@ def human(df):
 		"type":"draw",
 		"window":[300,0,0,0],
 		"kind":["脸","鬼脸","头"],
+        "face": True,
 		"start":17
 	}
 	df['actions'].append(m)	
+
+
+	m={
+        "type":"caption",
+        "caption":"真是个可爱的小朋友呢！",
+        "start":17.1
+    }
+	df['actions'].append(m)
+
 	return df
 
 def kitchen(df):
 	#create obj
+
+	m={
+        "type":"caption",
+        "caption":"小朋友走到来到餐桌前",
+        "start":18.9
+    }
+	df['actions'].append(m)
+
+	m={
+        "type":"caption",
+        "caption":"他需要补充能量",
+        "start":19.5
+    }
+	df['actions'].append(m)
+
 	m={
 		"name":"kitchen",
 		"tex":"paint/house_inside9.jpg",
@@ -305,10 +398,19 @@ def kitchen(df):
 	m={
 		"type":"draw",
 		"window":[650,250,100,100],
-		"kind":["脸","鬼脸", "头"],
+        "kind":["苹果", "香蕉", "面包", "蛋糕", "鱼", "汉堡", "热狗", "冰淇淋", "龙虾", "梨", "菠萝","番茄", "公鸡"],
 		"start":24
 	}
 	df['actions'].append(m)	
+
+
+	m={
+        "type":"caption",
+        "caption":"你为他准备什么食物呢？",
+        "start":23.9
+    }
+	df['actions'].append(m)
+
 	return df
 
 def human_1(df):
@@ -363,6 +465,7 @@ def tunnel(df):
 	return df
 
 def time_travel(df):
+
 	m={
 		"name":"tunnel",
 		"tex":"paint/tunnel2.jpg",
@@ -376,6 +479,16 @@ def time_travel(df):
 		"obj":"tunnel",
 		"start":25
 	}
+
+
+	m={
+        "type":"caption",
+        "caption":"嗯！吃饱了就可以出门啦！",
+        "start":24.9
+    }
+	df['actions'].append(m)
+
+
 	df['actions'].append(m)
 	m={
 		"name":"time_machine",

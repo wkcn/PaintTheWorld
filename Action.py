@@ -29,6 +29,7 @@ class Action:
         elif self.kind == "draw":
             self.window = arg["window"]
             self.objkind = arg["kind"]
+            self.face = arg.get("face", False)
         elif self.kind == "caption":
             self.caption = arg["caption"]
         elif self.kind in ["hide", "show"]:
@@ -66,6 +67,7 @@ class Action:
 
                 Action.mp.brush.open()
                 Action.mp.brush.set_objkind(self.objkind)
+                Action.mp.brush.face = self.face
                 Action.mp.pause() 
             elif self.kind == "caption":
                 Action.mp.caption = self.caption

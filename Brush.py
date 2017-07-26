@@ -17,6 +17,7 @@ class Brush():
         self.last_pos = None
         self.space = 1
         self.npoints = []
+        self.face = False
 
         self.x = 0
         self.y = 0
