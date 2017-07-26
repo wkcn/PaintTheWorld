@@ -144,7 +144,7 @@ def cloud(df):
 	#draw cloud
 	m={
 		"type":"draw",
-		"window":[600,0,200,200],
+		"window":[400,0,200,200],
 		"kind":"云",
 		"start":3
 	}
@@ -347,7 +347,7 @@ def human(df):
 	m={
 		"type":"draw",
 		"window":[623,96,175,175],
-		"kind":["脸","鬼脸","头", "嘴巴", "耳朵", "鼻子"],
+		"kind":["脸","鬼脸","头", "嘴巴", "耳朵", "鼻子", "眼睛"],
         "face": True,
 		"start":17
 	}
@@ -473,7 +473,9 @@ def time_travel(df):
 		"scale":1.5,
 		'hide':True
 	}
+
 	df['obj'].append(m)
+
 	m={
 		"type":"show",
 		"obj":"tunnel",
@@ -481,6 +483,7 @@ def time_travel(df):
 	}
 
 
+	df['actions'].append(m)
 	m={
         "type":"caption",
         "caption":"嗯！吃饱了就可以出门啦！",
