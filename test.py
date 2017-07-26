@@ -49,8 +49,7 @@ while 1:
             if event.key == K_ESCAPE:
                 exit(0)
             elif event.key == K_SPACE:
-                pass
-                #brush.right = True
+                brush.right = True
         elif brush.opened:
             if event.type == MOUSEBUTTONDOWN:
                 # Left Button
