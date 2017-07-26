@@ -60,7 +60,10 @@ while 1:
             if event.key == K_ESCAPE:
                 exit(0)
             elif event.key == K_SPACE:
-                brush.right = True
+                if not brush.ready:
+                    brush.right = True
+                else:
+                    brush.ready = False
             elif event.key == K_p:
                 if mp.paused:
                     mp.goon()
@@ -68,18 +71,22 @@ while 1:
                 else:
                     mp.pause()
         elif brush.opened:
-            if event.type == MOUSEBUTTONDOWN:
-                # Left Button
-                if event.button == 1:
-                    brush.start_draw(event.pos)
-                    print_pos(event.pos)
-                else:
-                    brush.clear()
-                    mp.caption = ""
-            elif event.type == MOUSEMOTION:
-                brush.draw(event.pos)
-            elif event.type == MOUSEBUTTONUP:
-                brush.end_draw()
+            if not brush.ready:
+                if event.type == MOUSEBUTTONDOWN:
+                    # Left Button
+                    if event.button == 1:
+                        brush.start_draw(event.pos)
+                        print_pos(event.pos)
+                    else:
+                        brush.clear()
+                        mp.caption = ""
+                elif event.type == MOUSEMOTION:
+                    brush.draw(event.pos)
+                elif event.type == MOUSEBUTTONUP:
+                    brush.end_draw()
+            else:
+                if event.type == MOUSEBUTTONDOWN:
+                    brush.ready = False 
         else:
             if event.type == MOUSEBUTTONDOWN:
                 print_pos(event.pos)
@@ -89,8 +96,11 @@ while 1:
             if brush.face:
                 # draw face!
                 print ("draw face")
+                brush.thick(2)
                 bim = brush.get_pic().astype(np.uint8)
                 r,c = bim.shape
+
+                '''
                 b = (bim == 0)
                 for i in range(1, 2):
                     b[:-i,:] |= b[i:,:] 
@@ -98,6 +108,8 @@ while 1:
                     b[:, :-i] |= b[:, i:] 
                     b[:, i:] |= b[:, :-i] 
                 bim = ((~b) * 255).astype(np.uint8)
+                '''
+
 
                 im = np.zeros((r,c,4)).astype(np.uint8)
                 im[bim == 0,3] = 255

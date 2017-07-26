@@ -35,6 +35,7 @@ class Brush():
         self.right = False
         self.predicted = True 
         self.xiaoming = pygame.image.load("./res/paint/face.png")
+        self.ready = False 
 
         self.stop_clock = 0
         self.objkind = ""
@@ -50,6 +51,7 @@ class Brush():
         self.opened = False
 
     def set_window(self, window):
+        self.window = window
         full_window = [250,150,300,300]
         self.x, self.y, self.w, self.h = full_window
         self.bx, self.by, self.bw, self.bh = window
@@ -59,6 +61,8 @@ class Brush():
 
         im = mygame.image.load("res/box.png") 
         self.box_pic = pygame.transform.scale(im, (300,300))
+        self.xbox = pygame.transform.scale(pygame.image.load("./res/paint/xbox.png"), (self.window[2], self.window[3]))
+        self.ready = True
 
     def start_draw(self, pos):
         self.drawing = True
@@ -72,6 +76,8 @@ class Brush():
         #if self.face:
         #    WIDTH = 3
         if not self.opened:
+            return
+        if self.ready:
             return
         if self.drawing:
             for p in self._get_points(pos):
@@ -107,6 +113,9 @@ class Brush():
             if self.t > 0:
                 self.t = min(1.0, self.t - clock / 1000 * 2.5)
                 self.draw_bim()
+            return
+        if self.ready:
+            self.screen.blit(self.xbox, (self.window[0], self.window[1]))
             return
 
 
@@ -213,6 +222,16 @@ class Brush():
 
     def clear(self):
         self.npoints = []
+    def thick(self, WIDTH):
+        tmp = []
+        for p in self.npoints:
+            for ax in range(-WIDTH, WIDTH + 1):
+                for ay in range(-WIDTH, WIDTH + 1):
+                    if abs(ax) + abs(ay) <= WIDTH:
+                        q = (p[0] + ax, p[1] + ay)
+                        if self.is_in_box(q):
+                            tmp.append(q)
+        self.npoints.extend(tmp)
     def get_pic(self):
         im = np.ones((self.h, self.w)).astype(np.uint8) * 255
         ah = aw = 0
