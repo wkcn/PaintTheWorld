@@ -34,6 +34,7 @@ class Brush():
         self.box_pic = None
         self.right = False
         self.predicted = True 
+        self.xiaoming = pygame.image.load("./res/paint/face.png")
 
         self.stop_clock = 0
         self.objkind = ""
@@ -53,9 +54,11 @@ class Brush():
         self.x, self.y, self.w, self.h = full_window
         self.bx, self.by, self.bw, self.bh = window
         #self.bim = self.screen.subsurface((self.bx, self.by), (self.bw, self.bh)) 
+        if self.face:
+            self.bim = pygame.transform.scale(pygame.image.load("res/board.png"), (800, 600))
 
-        im = mygame.image.load("res/" + "board.png") 
-        self.box_pic = pygame.transform.scale(im, (self.bw, self.bh)).convert()
+        im = mygame.image.load("res/box.png") 
+        self.box_pic = pygame.transform.scale(im, (300,300))
 
     def start_draw(self, pos):
         self.drawing = True
@@ -81,11 +84,20 @@ class Brush():
             self.last_pos = pos
 
     def draw_bim(self):
-        x,y,w,h = self.get_bpos(self.t, (self.bx, self.by, self.bw, self.bh), (0, 0, 800, 600)) 
+        if self.face:
+            self.t = 1.0
+        x,y,w,h = self.get_cpos(self.t, (self.bx, self.by, self.bw, self.bh), (0, 0, 800, 600)) 
+        #print (x,y,w,h)
+        x = max(0, x)
+        y = max(0, y)
+        w = min(800 - x, w)
+        h = min(600 - y, h)
+
 
         if self.bim is not None:
-            self.board_pic = pygame.transform.scale(self.bim, (w, h)).convert()
-        self.screen.blit(self.board_pic, (x, y))
+            #self.board_pic = pygame.transform.scale(self.bim, (w, h)).convert()
+            self.board_pic = pygame.transform.scale(self.bim.subsurface((x,y),(w,h)), (800, 600))
+        self.screen.blit(self.board_pic, (0, 0))
 
     def update(self, clock):
         if not self.opened:
@@ -95,15 +107,17 @@ class Brush():
             return
 
 
-        #if self.box_pic is not None:
-        #    self.screen.blit(self.box_pic, (self.bx, self.by))
-
         # Open
         if self.t < 1:
             self.t = min(1.0, self.t + clock / 1000 * 1.5)
             self.draw_bim()
             return
         self.screen.blit(self.board_pic, (0, 0))
+
+        if self.face:
+            self.screen.blit(self.xiaoming, (165, 0))
+        if self.box_pic is not None:
+            self.screen.blit(self.box_pic, (250, 150))
 
         if self.drawing:
             self.stop_clock = 0
@@ -151,6 +165,18 @@ class Brush():
         h = max(1, h)
         x = max(int((1.0 - t) * sx + t * bx), 0)
         y = max(int((1.0 - t) * sy + t * by), 0)
+        return (x,y,w,h)
+
+
+    def get_cpos(self, t, s, b):
+        sx,sy,sw,sh = s
+        bx,by,bw,bh = b
+        x = int(sx * t + bx * (1.0 - t))
+        y = int(sy * t + by * (1.0 - t))
+        w = int(sw * t + bw * (1.0 - t))
+        h = int(sh * t + bh * (1.0 - t))
+        #h = w * 600 / 800
+        #w = h * 800 / 600
         return (x,y,w,h)
     def predict(self):
         # Check The Kind

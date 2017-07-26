@@ -101,7 +101,7 @@ def sun(df):
 	#draw sun
 	m={
 		"type":"draw",
-		"window":[100,0,200,200],
+		"window":[100,100,200,200],
 		"kind":"太阳",
 		"start":0.9
 	}
@@ -144,7 +144,7 @@ def cloud(df):
 	#draw cloud
 	m={
 		"type":"draw",
-		"window":[300,0,500,100],
+		"window":[600,0,200,200],
 		"kind":"云",
 		"start":3
 	}
@@ -346,8 +346,8 @@ def human(df):
 	#draw face
 	m={
 		"type":"draw",
-		"window":[300,0,0,0],
-		"kind":["脸","鬼脸","头"],
+		"window":[623,96,175,175],
+		"kind":["脸","鬼脸","头", "嘴"],
         "face": True,
 		"start":17
 	}

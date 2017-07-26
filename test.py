@@ -48,6 +48,7 @@ def print_pos(p):
     print ("global_pos: %s, mouse_pos: %s, offset: %s" % (str(g), str(p), str(offset)))
     last_mouse_pos = p
 
+ratio = 5
 while 1:
     for event in mygame.event.get():
         if event.type == QUIT:
@@ -57,6 +58,11 @@ while 1:
                 exit(0)
             elif event.key == K_SPACE:
                 brush.right = True
+            elif event.key == K_p:
+                if mp.paused:
+                    mp.goon()
+                else:
+                    mp.pause()
         elif brush.opened:
             if event.type == MOUSEBUTTONDOWN:
                 # Left Button
@@ -99,7 +105,7 @@ while 1:
     intervalClock = nowClock - lastClock
     lastClock = nowClock
 
-    mp.update(intervalClock)
+    mp.update(intervalClock * ratio)
     screen.fill((255, 255, 255))
     mp.draw(screen)
 

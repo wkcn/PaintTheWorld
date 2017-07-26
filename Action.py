@@ -61,13 +61,14 @@ class Action:
             elif self.kind == "pause":
                 Action.mp.pause()
             elif self.kind == "draw":
+                Action.mp.brush.face = self.face
+                Action.mp.brush.bim = Action.screen.surface
                 Action.mp.brush.set_window(self.window)
                 bx, by, bw, bh = self.window
-                Action.mp.brush.bim = Action.screen.surface.subsurface((bx, by), (bw, bh)) 
+                #Action.mp.brush.bim = Action.screen.surface.subsurface((bx, by), (bw, bh)) 
 
                 Action.mp.brush.open()
                 Action.mp.brush.set_objkind(self.objkind)
-                Action.mp.brush.face = self.face
                 Action.mp.pause() 
             elif self.kind == "caption":
                 Action.mp.caption = self.caption
