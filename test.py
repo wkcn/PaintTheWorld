@@ -50,7 +50,7 @@ def print_pos(p):
 
 # DEBUG
 # PLAY SPEED
-ratio = 2
+ratio = 1
 
 while 1:
     for event in mygame.event.get():
