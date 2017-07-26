@@ -15,6 +15,7 @@ class Mapper:
         self.brush = None
         self.caption = ""
         self.black = False
+        self.pause_time = 0
     def load(self, filename):
         self.clear()
         fin = open(filename, "r")
@@ -33,6 +34,9 @@ class Mapper:
         self.actions.sort(key = lambda x:x.start)
     def update(self, clock):
         if self.paused:
+            for a in self.actions:
+                if a.hold:
+                    a.update(self.clock)
             return
 
         for o in self.objs:

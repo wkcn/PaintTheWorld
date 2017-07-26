@@ -9,6 +9,7 @@ class Action:
             self.obj = Action.mp.get_obj(arg["obj"])
         self.start = arg["start"] * 1000
         self.end = arg.get("end", 10240) * 1000
+        self.hold = arg.get("hold", False)
         self.dead = False
         self.running = False
         if self.kind == "move":

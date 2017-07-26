@@ -128,14 +128,16 @@ def sun(df):
 		"obj":'sun',
 		"start":1,
 		'v':1,
-		"offset":[0,-80]
+		"offset":[0,-80],
+        "hold":True
 	}
 	df['actions'].append(m)
 	m={
 		"type":"rotate",
 		"obj":"sun",
 		"v":5,
-		"start":1
+		"start":1,
+        "hold":True
 	}
 	df['actions'].append(m)
 	return df
@@ -349,7 +351,7 @@ def human(df):
 	#draw face
 	m={
 		"type":"draw",
-		"window":[623,96,175,175],
+		"window":[711,109,82,52],
 		"kind":["脸","鬼脸","头", "嘴巴", "耳朵", "鼻子", "眼睛"],
         "face": True,
 		"start":17
