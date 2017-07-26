@@ -62,6 +62,7 @@ class Action:
             elif self.kind == "draw":
                 Action.mp.brush.set_window(self.window)
                 Action.mp.brush.open()
+                Action.mp.brush.set_objkind(self.objkind)
                 Action.mp.pause() 
             elif self.kind == "caption":
                 Action.mp.caption = self.caption

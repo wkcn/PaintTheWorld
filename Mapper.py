@@ -30,11 +30,11 @@ class Mapper:
             a = Action(ac)
             self.actions.append(a)
     def update(self, clock):
-        for o in self.objs:
-            o.update(clock)
-
         if self.paused:
             return
+
+        for o in self.objs:
+            o.update(clock)
 
         self.clock += clock
 
@@ -48,7 +48,7 @@ class Mapper:
             o.draw(screen)
     def get_obj(self, name):
         return self.objs_map[name]
-    def cont(self):
+    def goon(self):
         self.paused = False
     def pause(self):
         self.paused = True
