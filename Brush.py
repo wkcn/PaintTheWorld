@@ -73,6 +73,7 @@ class Brush():
     def end_draw(self):
         self.drawing = False
         self.predicted = False
+        self.last_pos = None
 
     def draw(self, pos):
         WIDTH = 0
@@ -219,6 +220,8 @@ class Brush():
 
     def _get_points(self, pos):
         """ Get all points between last_point ~ now_point. """
+        if self.last_pos is None:
+            return []
         points = [ (self.last_pos[0], self.last_pos[1]) ]
         len_x = pos[0] - self.last_pos[0]
         len_y = pos[1] - self.last_pos[1]
@@ -233,6 +236,7 @@ class Brush():
 
     def clear(self):
         self.npoints = []
+        self.last_pos = None
     def thick(self, WIDTH):
         tmp = []
         for p in self.npoints:
