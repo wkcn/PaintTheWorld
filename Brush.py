@@ -35,7 +35,7 @@ class Brush():
         self.box_pic = None
         self.right = False
         self.predicted = True 
-        self.xiaoming = pygame.image.load("./res/color/face.png")
+        self.xiaoming = pygame.image.load("./res/gray/boy2.png")
         self.ready = False 
 
         self.ratio = 1.0

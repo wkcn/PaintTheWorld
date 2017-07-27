@@ -107,6 +107,7 @@ while 1:
 
             # replace im
             if brush.obj is not None:
+                brush.thick(2)
                 fn = "/create/%s.png" % brush.obj
                 brush.save_png("./res/" + fn)
                 for o in mp.objs:
@@ -139,15 +140,16 @@ while 1:
 
     brush.update(intervalClock)
 
-    '''
-    text_surface = font.render(u"FPS: %3.f" % NowFPS, True, (255, 0, 0))
-    screen.blit_fix(text_surface, (0, 0))
-    '''
+    #text_surface = font.render(u"FPS: %3.f" % NowFPS, True, (255, 0, 0))
+    #screen.blit_fix(text_surface, (0, 0))
 
-    if mp.black:
+    caption_surface = font2.render(mp.caption, True, (255,69,0))
+    '''
+    if mp.black or True:
         caption_surface = font2.render(mp.caption, True, (0,0,0))
     else:
         caption_surface = font2.render(mp.caption, True, (255, 255, 255))
+    '''
 
     _len = len(mp.caption)
     x = (800 - _len * 50) / 2

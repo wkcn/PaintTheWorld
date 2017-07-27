@@ -35,7 +35,7 @@ class Action:
         elif self.kind == "caption":
             self.caption = arg["caption"]
             self.black = arg.get("black", False)
-        elif self.kind in ["hide", "show", "color"]:
+        elif self.kind in ["hide", "show", "color", "gray"]:
             pass
         else:
             raise TypeError("Unknown Type %s" % self.kind)

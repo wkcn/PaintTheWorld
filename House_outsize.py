@@ -5,7 +5,7 @@ import random
 def test(df):
 	m={
 		"name":"scene",
-		"tex":"color/house.png",
+		"tex":"gray/house.png",
 		"pos":[0,0,0],
 		"scale":1.7,
 	}
@@ -13,7 +13,7 @@ def test(df):
 
 	m={
 		"name":"human_3",
-		"tex":"color/boy2.png",
+		"tex":"gray/boy2.png",
 		"pos":[0,370,0],
 		"scale":0.3,
 	}
@@ -21,7 +21,7 @@ def test(df):
 
 	m={
 		"name":"monster",
-		"tex":"color/dinosaur.png",
+		"tex":"gray/dinosaur.png",
 		"pos":[600,400,0],
 		"scale":0.2,
 	}
@@ -65,7 +65,7 @@ def house(df):
 	#create obj
 	m={
 		"name":"house_outside",
-		"tex":"color/house.png",
+		"tex":"gray/house.png",
 		"pos":[-100,0,0],
 		"scale":0.76
 	}
@@ -104,6 +104,7 @@ def sun(df):
 		"window":[100,100,200,200],
 		"kind":"太阳",
 		"start":0.9,
+        "rep":"sun"
 	}
 	df['actions'].append(m)
 	#create sun
@@ -149,6 +150,7 @@ def cloud(df):
 		"window":[400,0,200,200],
 		"kind":"云",
 		"start":3,
+        "rep":"cloud"
 	}
 	df['actions'].append(m)
 	#create cloud
@@ -195,7 +197,7 @@ def carema(df):
 	df['actions'].append(m)
 
 	m={
-        "type":"color",
+        "type":"gray",
         "start":7
     }
 	df['actions'].append(m)
@@ -254,7 +256,7 @@ def house_inside(df):
 
 	m={
 		"name":"house_inside",
-		"tex":"color/bedroom.png",
+		"tex":"gray/bedroom.png",
 		"pos":[300,300,0],
 		"scale":0.57,
 		'hide':True
@@ -270,7 +272,7 @@ def house_inside(df):
 def human(df):
 	m={
 		"name":"human",
-		"tex":"color/boy2.png",
+		"tex":"gray/boy2.png",
 		"pos":[600,650,0],
 		"scale":0.3,
 		'hide':True
@@ -336,7 +338,7 @@ def human(df):
 
 
 	m={
-        "type":"color",
+        "type":"gray",
         "start":15.5
     }
 	df['actions'].append(m)
@@ -397,7 +399,7 @@ def kitchen(df):
 
 	m={
 		"name":"kitchen",
-		"tex":"color/kitchen.png",
+		"tex":"gray/kitchen.png",
 		"pos":[300,300,0],
 		"scale":0.5,
 		'hide':True
@@ -407,7 +409,7 @@ def kitchen(df):
 
 	m={
 		"name":"food",
-		"tex":"color/kitchen.png",
+		"tex":"gray/kitchen.png",
 		"pos":[983,527,2],
 		"scale":1.0,
 		'hide':True
@@ -452,7 +454,7 @@ def kitchen(df):
 def human_1(df):
 	m={
 		"name":"human_1",
-		"tex":"color/boy2.png",
+		"tex":"gray/boy2.png",
 		"pos":[300,600,0],
 		"scale":0.3,
 		'hide':True
@@ -487,7 +489,7 @@ def human_1(df):
 def time_travel(df):
 
 	m={
-        "type":"color",
+        "type":"gray",
         "start":24
     }
 	df['actions'].append(m)
@@ -506,7 +508,7 @@ def time_travel(df):
 	df['actions'].append(m)
 	m={
 		"name":"tunnel",
-		"tex":"paint/tunnel2.jpg",
+		#"tex":"paint/tunnel2.jpg",
 		"pos":[300,300,0],
 		"scale":1.5,
 		'hide':True
@@ -522,7 +524,7 @@ def time_travel(df):
 	df['actions'].append(m)
 	m={
 		"name":"time_machine",
-		"tex":"color/timemachine.png",
+		"tex":"gray/timemachine.png",
 		"pos":[650,450,0],
 		"scale":0.75,
 		'hide':True
@@ -536,7 +538,7 @@ def time_travel(df):
 	df['actions'].append(m)
 	m={
 		"name":"human_2",
-		"tex":"color/boy2.png",
+		"tex":"gray/boy2.png",
 		"pos":[760,560,0],
 		"scale":0.15,
 		'hide':True
@@ -567,7 +569,7 @@ def time_travel(df):
 
 
 	m={
-        "type":"color",
+        "type":"gray",
         "start":28.5
     }
 	df['actions'].append(m)
@@ -609,7 +611,7 @@ def beat_monster(df):
 
 
 	m={
-        "type":"color",
+        "type":"gray",
         "start":38
     }
 	df['actions'].append(m)
@@ -617,7 +619,7 @@ def beat_monster(df):
 
 	m={
 		"name":"scene",
-		"tex":"color/ancient.png",
+		"tex":"gray/ancient.png",
 		"pos":[300,300,0],
 		"scale":1.7,
 		'hide':True
@@ -631,7 +633,7 @@ def beat_monster(df):
 	df['actions'].append(m)
 	m={
 		"name":"human_3",
-		"tex":"color/boy2.png",
+		"tex":"gray/boy2.png",
 		"pos":[300,670,0],
 		"scale":0.3,
 		'hide':True
@@ -646,7 +648,7 @@ def beat_monster(df):
 
 	m={
 		"name":"monster",
-		"tex":"color/dinosaur.png",
+		"tex":"gray/dinosaur.png",
 		"pos":[900,700,0],
 		"scale":0.2,
 		'hide':True
@@ -655,7 +657,7 @@ def beat_monster(df):
 
 	m={
 		"name":"weapon",
-		"tex":"color/dinosaur.png",
+		"tex":"gray/dinosaur.png",
 		"pos":[587,645,0],
 		"scale":0.2,
 		'hide':True

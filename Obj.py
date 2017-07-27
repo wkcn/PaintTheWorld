@@ -10,12 +10,15 @@ class Obj:
         self.angle = 0
         self.face = None
         self.scale = args.get("scale", 1.0)
-        self.load_tex(args["tex"])
+        self.tex = None
+        self.load_tex(args.get("tex", None))
         self.realPos = copy.copy(args["pos"]) 
         self.tarPos = copy.copy(args["pos"]) 
         self.v = 1
         self.hide = args.get("hide", False) 
     def load_tex(self, filename):
+        if filename is None:
+            return
         im = mygame.image.load("res/" + filename) 
         self.filename = filename
         '''
@@ -47,6 +50,8 @@ class Obj:
                         self.realPos[i] = self.tarPos[i]
     def draw(self, screen):
         if self.hide:
+            return
+        if self.tex is None:
             return
         tex = pygame.transform.rotozoom(self.tex, self.angle, self.scale) 
         siz = tex.get_size()
