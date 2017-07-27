@@ -5,7 +5,7 @@ import random
 def test(df):
 	m={
 		"name":"scene",
-		"tex":"paint/cartoon-stone-forest-scene-3d-model-max.jpg",
+		"tex":"color/house.png",
 		"pos":[0,0,0],
 		"scale":1.7,
 	}
@@ -13,7 +13,7 @@ def test(df):
 
 	m={
 		"name":"human_3",
-		"tex":"paint/boy2.png",
+		"tex":"color/boy2.png",
 		"pos":[0,370,0],
 		"scale":0.3,
 	}
@@ -21,7 +21,7 @@ def test(df):
 
 	m={
 		"name":"monster",
-		"tex":"paint/bc3c66bac6c21ab1896f37b663d34a64.png",
+		"tex":"color/dinosaur.png",
 		"pos":[600,400,0],
 		"scale":0.2,
 	}
@@ -65,7 +65,7 @@ def house(df):
 	#create obj
 	m={
 		"name":"house_outside",
-		"tex":"paint/house_in_the_forest_1280x800.jpg",
+		"tex":"color/house.png",
 		"pos":[-100,0,0],
 		"scale":0.76
 	}
@@ -104,7 +104,6 @@ def sun(df):
 		"window":[100,100,200,200],
 		"kind":"太阳",
 		"start":0.9,
-        "rep":"sun"
 	}
 	df['actions'].append(m)
 	#create sun
@@ -150,7 +149,6 @@ def cloud(df):
 		"window":[400,0,200,200],
 		"kind":"云",
 		"start":3,
-        "rep":"cloud"
 	}
 	df['actions'].append(m)
 	#create cloud
@@ -193,6 +191,12 @@ def carema(df):
         "type":"caption",
         "caption":"真是一幅生机勃勃的景象啊！",
         "start":5
+    }
+	df['actions'].append(m)
+
+	m={
+        "type":"color",
+        "start":7
     }
 	df['actions'].append(m)
 
@@ -250,7 +254,7 @@ def house_inside(df):
 
 	m={
 		"name":"house_inside",
-		"tex":"paint/house_inside6.jpg",
+		"tex":"color/bedroom.png",
 		"pos":[300,300,0],
 		"scale":0.57,
 		'hide':True
@@ -266,7 +270,7 @@ def house_inside(df):
 def human(df):
 	m={
 		"name":"human",
-		"tex":"paint/boy2.png",
+		"tex":"color/boy2.png",
 		"pos":[600,650,0],
 		"scale":0.3,
 		'hide':True
@@ -331,6 +335,12 @@ def human(df):
 	df['actions'].append(m)
 
 
+	m={
+        "type":"color",
+        "start":15.5
+    }
+	df['actions'].append(m)
+
 
 	m={
         "type":"caption",
@@ -387,7 +397,7 @@ def kitchen(df):
 
 	m={
 		"name":"kitchen",
-		"tex":"paint/house_inside9.jpg",
+		"tex":"color/kitchen.png",
 		"pos":[300,300,0],
 		"scale":0.5,
 		'hide':True
@@ -397,7 +407,7 @@ def kitchen(df):
 
 	m={
 		"name":"food",
-		"tex":"paint/house_inside9.jpg",
+		"tex":"color/kitchen.png",
 		"pos":[983,527,2],
 		"scale":1.0,
 		'hide':True
@@ -442,7 +452,7 @@ def kitchen(df):
 def human_1(df):
 	m={
 		"name":"human_1",
-		"tex":"paint/boy2.png",
+		"tex":"color/boy2.png",
 		"pos":[300,600,0],
 		"scale":0.3,
 		'hide':True
@@ -475,6 +485,13 @@ def human_1(df):
 
 
 def time_travel(df):
+
+	m={
+        "type":"color",
+        "start":24
+    }
+	df['actions'].append(m)
+
 	m={
         "type":"caption",
         "caption":"嗯！吃饱了就可以出门啦！",
@@ -505,7 +522,7 @@ def time_travel(df):
 	df['actions'].append(m)
 	m={
 		"name":"time_machine",
-		"tex":"paint/time_machine.png",
+		"tex":"color/timemachine.png",
 		"pos":[650,450,0],
 		"scale":0.75,
 		'hide':True
@@ -519,7 +536,7 @@ def time_travel(df):
 	df['actions'].append(m)
 	m={
 		"name":"human_2",
-		"tex":"paint/boy2.png",
+		"tex":"color/boy2.png",
 		"pos":[760,560,0],
 		"scale":0.15,
 		'hide':True
@@ -547,6 +564,15 @@ def time_travel(df):
 		"offset":[-200,200]
 	}
 	df['actions'].append(m)
+
+
+	m={
+        "type":"color",
+        "start":28.5
+    }
+	df['actions'].append(m)
+
+
 	return df
 
 def beat_monster(df):
@@ -580,9 +606,18 @@ def beat_monster(df):
         "start":37.5,
     }
 	df['actions'].append(m)
+
+
+	m={
+        "type":"color",
+        "start":38
+    }
+	df['actions'].append(m)
+
+
 	m={
 		"name":"scene",
-		"tex":"paint/cartoon-stone-forest-scene-3d-model-max.jpg",
+		"tex":"color/ancient.png",
 		"pos":[300,300,0],
 		"scale":1.7,
 		'hide':True
@@ -596,7 +631,7 @@ def beat_monster(df):
 	df['actions'].append(m)
 	m={
 		"name":"human_3",
-		"tex":"paint/boy2.png",
+		"tex":"color/boy2.png",
 		"pos":[300,670,0],
 		"scale":0.3,
 		'hide':True
@@ -611,7 +646,7 @@ def beat_monster(df):
 
 	m={
 		"name":"monster",
-		"tex":"paint/bc3c66bac6c21ab1896f37b663d34a64.png",
+		"tex":"color/dinosaur.png",
 		"pos":[900,700,0],
 		"scale":0.2,
 		'hide':True
@@ -620,7 +655,7 @@ def beat_monster(df):
 
 	m={
 		"name":"weapon",
-		"tex":"paint/bc3c66bac6c21ab1896f37b663d34a64.png",
+		"tex":"color/dinosaur.png",
 		"pos":[587,645,0],
 		"scale":0.2,
 		'hide':True

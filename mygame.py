@@ -17,7 +17,8 @@ class image:
             w, h = im.get_size()
             tw = int(w * r)
             th = int(h * r)
-            image.resource[filename] = pygame.transform.smoothscale(im, (tw, th)).convert_alpha()
+            #image.resource[filename] = pygame.transform.smoothscale(im, (tw, th)).convert_alpha()
+            image.resource[filename] = pygame.transform.scale(im, (tw, th)).convert_alpha()
         return image.resource[filename]
 
 class FakeMixerMusic:

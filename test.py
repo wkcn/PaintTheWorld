@@ -148,6 +148,7 @@ while 1:
         caption_surface = font2.render(mp.caption, True, (0,0,0))
     else:
         caption_surface = font2.render(mp.caption, True, (255, 255, 255))
+
     _len = len(mp.caption)
     x = (800 - _len * 50) / 2
     screen.blit_fix(caption_surface, (x, 520))

@@ -35,7 +35,7 @@ class Action:
         elif self.kind == "caption":
             self.caption = arg["caption"]
             self.black = arg.get("black", False)
-        elif self.kind in ["hide", "show"]:
+        elif self.kind in ["hide", "show", "color"]:
             pass
         else:
             raise TypeError("Unknown Type %s" % self.kind)
@@ -79,6 +79,12 @@ class Action:
                 Action.mp.black = self.black
                 if self.end == -1:
                     Action.mp.pause()
+            elif self.kind == "color":
+                for o in Action.mp.objs: 
+                    if not o.hide:
+                        if "gray" in o.filename:
+                            s = o.filename.replace("gray", "color")
+                            o.load_tex(s)
 
         # trigger
         if self.kind == "rotate":

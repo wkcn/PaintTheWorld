@@ -35,7 +35,7 @@ class Brush():
         self.box_pic = None
         self.right = False
         self.predicted = True 
-        self.xiaoming = pygame.image.load("./res/paint/face.png")
+        self.xiaoming = pygame.image.load("./res/color/face.png")
         self.ready = False 
 
         self.ratio = 1.0
@@ -64,7 +64,7 @@ class Brush():
 
         im = mygame.image.load("res/box.png") 
         self.box_pic = pygame.transform.scale(im, (300,300))
-        self.xbox = pygame.transform.scale(pygame.image.load("./res/paint/xbox.png"), (self.window[2], self.window[3]))
+        self.xbox = pygame.transform.scale(pygame.image.load("./res/box.png"), (self.window[2], self.window[3]))
         self.ready = True
 
     def start_draw(self, pos):
