@@ -69,7 +69,6 @@ class Brush():
 
     def start_draw(self, pos):
         self.drawing = True
-        self.last_pos = pos
     def end_draw(self):
         self.drawing = False
         self.predicted = False
