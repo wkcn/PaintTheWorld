@@ -12,6 +12,8 @@ class ScreenBox:
     SCROLL_RIGHT = 0
     def __init__(self, surface):
         self.surface = surface
+        self.restart()
+    def restart(self):
         self.display_x = 0
         self.display_y = 0
         boxW, boxH = self.surface.get_size()
