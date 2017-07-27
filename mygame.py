@@ -11,7 +11,7 @@ class image:
     resource = {}
     @staticmethod
     def load(filename):
-        if filename not in image.resource:
+        if True or filename not in image.resource:
             #image.resource[filename] = pygame.image.load(filename).convert_alpha() 
             im = pygame.image.load(filename)#.convert_alpha() 
             w, h = im.get_size()
